@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:study_app/controllers/questions_paper/question_paper_controller.dart';
@@ -18,11 +19,14 @@ class HomeScreen extends StatelessWidget {
               child: SizedBox(
                 height: 200,
                 width: 200,
-                child: FadeInImage(
-                  placeholder:
-                      const AssetImage("assets/images/app_splash_logo.png"),
-                  image: NetworkImage(
-                      questionPaperController.allPapersImgs[index]),
+                child: CachedNetworkImage(
+                  errorWidget: (context, url, error) =>
+                      Image.asset("assets/images/app_splash_logo.png"),
+                  imageUrl: questionPaperController.allPapers[index].imageUrl!,
+                  placeholder: (context, url) => Container(
+                    alignment: Alignment.center,
+                    child: const CircularProgressIndicator(),
+                  ),
                 ),
               ),
             );
@@ -31,7 +35,7 @@ class HomeScreen extends StatelessWidget {
           separatorBuilder: ((context, index) => const SizedBox(
                 height: 20,
               )),
-          itemCount: questionPaperController.allPapersImgs.length,
+          itemCount: questionPaperController.allPapers.length,
         ),
       ),
     );

@@ -40,6 +40,9 @@ dependencies:
   cloud_firestore: ^4.8.4
   google_fonts: ^5.1.0
   firebase_storage: ^11.2.5
+  logger: ^2.0.1
+  # 带有缓存的图片加载组件，节省服务器带宽 
+  cached_network_image: ^3.2.3
 
 dev_dependencies:
   flutter_test:
